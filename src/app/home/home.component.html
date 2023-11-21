@@ -1,0 +1,65 @@
+<div class="coursesContainer">
+  <a target="_blank" class="canteen" href="https://vsu.by">
+    <div>Новости</div>
+  </a>
+  <a
+    target="_blank"
+    class="canteen"
+    href="https://vsu.by/platnie-uslygi/menyu-stolovoj.html"
+  >
+    <div>Столовая</div>
+  </a>
+  <div class="course">
+    <div class="header">
+      <div class="headerImage">
+        <img src="assets/years/first_year.png" />
+      </div>
+      I курс
+    </div>
+    <div class="groups">
+      <h3 class="unavailable">Временно недоступно</h3>
+    </div>
+  </div>
+  <div class="course">
+    <div class="header">
+      <div class="headerImage">
+        <img src="assets/years/second_year.png" />
+      </div>
+      II курс
+    </div>
+    <div class="groups">
+      <ng-container *ngIf="groupNames">
+        <a
+          *ngFor="let group of groupNames.second; index as i"
+          [routerLink]="['/schedule', 2 + i.toString()]"
+        >
+          <div class="group">
+            <h2>{{ group.name }}</h2>
+          </div>
+        </a>
+      </ng-container>
+    </div>
+  </div>
+  <div class="course">
+    <div class="header">
+      <div class="headerImage">
+        <img src="assets/years/third_year.png" />
+      </div>
+      III курс
+    </div>
+    <div class="groups">
+      <h3 class="unavailable">Временно недоступно</h3>
+    </div>
+  </div>
+  <div class="course">
+    <div class="header">
+      <div class="headerImage">
+        <img src="assets/years/forth_year.png" />
+      </div>
+      IV курс
+    </div>
+    <div class="groups">
+      <h3 class="unavailable">Временно недоступно</h3>
+    </div>
+  </div>
+</div>
