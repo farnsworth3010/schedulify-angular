@@ -1,0 +1,23 @@
+<ng-container *ngIf="!days.length; else loaded">
+  <div class="loader_container">
+    <span class="loader"></span>
+  </div>
+</ng-container>
+<div class="page_animation">
+<ng-template #loaded>
+  <div class="appear_animation">
+    <div class="info">Группа: {{ groupName }}</div>
+    <h1 class="blockHeader">Звонки</h1>
+    <app-alarm />
+    <h1 class="blockHeader">Расписание на неделю</h1>
+    <div class="daysContainer">
+      <app-day-block
+        *ngFor="let day of days; index as i"
+        [dayName]="dayNames[i]"
+        [day]="day"
+        [isWeekend]="i > 4"
+      />
+    </div>
+  </div>
+</ng-template>
+</div>

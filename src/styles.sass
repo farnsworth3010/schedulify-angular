@@ -1,4 +1,5 @@
 @import './colors'
+@import 'animation'
 *, body
     margin: 0
     padding: 0
@@ -6,6 +7,7 @@
 html, body
     height: 100%
 body
+    position: relative
     background: $background
     padding: 15px 15vw
     box-sizing: border-box
@@ -44,3 +46,6 @@ a
 
 .content
     flex: 1 0 auto
+
+.page_animation
+    animation: appear 0.3s

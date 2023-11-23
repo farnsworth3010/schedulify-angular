@@ -1,0 +1,10 @@
+@import 'colors'
+@import 'mixins'
+@import 'animation'
+.aboutBlock
+    @include block
+
+body[class~="dark"]
+    .aboutBlock
+        background: #1c1c1c
+        color: #fff

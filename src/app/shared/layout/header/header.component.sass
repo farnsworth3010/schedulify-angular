@@ -1,0 +1,34 @@
+@import 'colors'
+@import 'animation'
+.header
+    text-align: center
+    color: $primaryVariant
+    display: block
+    // font-weight: 800
+    margin-bottom: 50px
+    margin-top: 50px
+    width: 300px
+.link
+    margin: 0 auto
+    width: fit-content
+    display: block
+.back_button
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    user-select: none
+    cursor: pointer
+    animation: opacity 0.3s
+.headerContainer
+    position: relative
+.headerColored
+    color: $primaryVariant
+
+body[class~="dark"]
+    .beta
+        color: #fff
+.beta
+    position: absolute
+    z-index: 999
+    top: 5px
+    right: 5px

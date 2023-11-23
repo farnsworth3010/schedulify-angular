@@ -1,0 +1,14 @@
+<p class="beta">beta v231123</p>
+<div class="headerContainer">
+  <span
+    (click)="back()"
+    *ngIf="notHome"
+    class="material-symbols-outlined back_button"
+  >
+    arrow_back_ios_new
+  </span>
+  <a class="link" [routerLink]="'/home'">
+    <img class="header" src="assets/logo.png" />
+  </a>
+  <!-- <DarkThemeToggle /> -->
+</div>
