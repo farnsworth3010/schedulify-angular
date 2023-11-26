@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Schedule } from '../../../core/interfaces/schedule';
+import { IPlainLesson} from '../../../../core/interfaces/plainLesson';
 
 @Component({
   selector: 'app-lesson',
@@ -11,6 +11,6 @@ import { Schedule } from '../../../core/interfaces/schedule';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LessonComponent {
-  @Input() lesson: Schedule[] = [];
+  @Input() pair: IPlainLesson[] = [];
   @Input() i: number = 0;
 }

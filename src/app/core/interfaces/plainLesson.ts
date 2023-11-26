@@ -1,4 +1,4 @@
-export interface Schedule {
+export interface IPlainLesson {
   audience: string;
   course: string;
   day_number: string;
@@ -12,4 +12,3 @@ export interface Schedule {
   teacher: string;
   upd: string;
 }
-

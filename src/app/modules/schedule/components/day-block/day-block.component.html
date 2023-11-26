@@ -1,8 +1,8 @@
 <div class="dayBlock">
   <h2 [class.weekend]="isWeekend">{{ dayName }}</h2>
   <ul class="scheduleList">
-    <ng-container *ngFor="let lesson of scheduleList; index as i">
-      <app-lesson [i]="i" [lesson]="lesson" />
+    <ng-container *ngFor="let pair of extendedDay.schedule; index as i">
+      <app-lesson [i]="i" [pair]="pair" />
     </ng-container>
   </ul>
 </div>

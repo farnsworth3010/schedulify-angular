@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Schedule } from '../interfaces/schedule';
+import { Observable, from, groupBy, tap } from 'rxjs';
+import { IPlainLesson } from '../interfaces/plainLesson';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +12,8 @@ export class ScheduleService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  getScheduleById(id: string): Observable<Schedule[]> {
-    const url = `${this.baseURL}?group_id=${id}`
-    return this.http.get<Schedule[]>(url)
+  getScheduleById(id: string): Observable<IPlainLesson[]> {
+    const url = `${this.baseURL}?group_id=${id}`;
+    return from(this.http.get<IPlainLesson[]>(url));
   }
 }

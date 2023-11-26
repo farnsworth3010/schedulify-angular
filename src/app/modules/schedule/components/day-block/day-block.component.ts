@@ -1,7 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Schedule } from '../../../core/interfaces/schedule';
 import { LessonComponent } from '../lesson/lesson.component';
+import { IDay } from '../../../../core/interfaces/day';
 
 @Component({
   selector: 'app-day-block',
@@ -9,19 +14,18 @@ import { LessonComponent } from '../lesson/lesson.component';
   imports: [CommonModule, LessonComponent],
   templateUrl: './day-block.component.html',
   styleUrl: './day-block.component.sass',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DayBlockComponent implements OnInit {
-  scheduleList: Schedule[][] = [];
   @Input() isWeekend: boolean = false;
   @Input({ required: true }) dayName: string = '';
-  @Input() day: Schedule[] = [];
+  @Input() day: IDay = { schedule: [] }; // just pairs ex. [3, 4, 5]
+  extendedDay: IDay = { schedule: [] }; // extended by empty pairs with their correct positions ex. [1, 2, 3, 4, 5, 6, 7, 8]
   ngOnInit(): void {
     for (let i = 0; i < 8; ++i) {
-      const lesson: Schedule[] = this.day.filter(
-        (el) => el.lesson_number == String(i + 1)
+      this.extendedDay.schedule.push(
+        this.day.schedule.find((pair) => +pair[0].lesson_number == i + 1) ?? []
       );
-      this.scheduleList.push(lesson)
     }
   }
 }
