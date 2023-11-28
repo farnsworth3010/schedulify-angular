@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LessonComponent } from '../lesson/lesson.component';
-import { IDay } from '../../../../core/interfaces/day';
+import { IPlainLesson } from '../../../../core/interfaces/plainLesson';
 
 @Component({
   selector: 'app-day-block',
@@ -19,13 +19,10 @@ import { IDay } from '../../../../core/interfaces/day';
 export class DayBlockComponent implements OnInit {
   @Input() isWeekend: boolean = false;
   @Input({ required: true }) dayName: string = '';
-  @Input() day: IDay = { schedule: [] }; // just pairs ex. [3, 4, 5]
-  extendedDay: IDay = { schedule: [] }; // extended by empty pairs with their correct positions ex. [1, 2, 3, 4, 5, 6, 7, 8]
+  @Input() day: IPlainLesson[][]= []; // just pairs ex. [3, 4, 5]
+  extendedDay: IPlainLesson [][] = []; // extended by empty pairs with their correct positions ex. [1, 2, 3, 4, 5, 6, 7, 8]
   ngOnInit(): void {
-    for (let i = 0; i < 8; ++i) {
-      this.extendedDay.schedule.push(
-        this.day.schedule.find((pair) => +pair[0].lesson_number == i + 1) ?? []
-      );
-    }
+    const mappedDay = new Map(this.day.map(el => [el[0].lesson_number, el]))
+    this.extendedDay = Array.from({ length: 8 }, (_, i) => mappedDay.get(`${i + 1}`) || [])
   }
 }

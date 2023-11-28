@@ -1,0 +1,12 @@
+<div>
+    <div *ngIf="!pair.length">{{ i + 1 }}.</div>
+    <span *ngIf="pair[0]?.subject">
+    {{ i + 1 }}. <b>{{ pair[0].subject }}</b>
+    </span>
+    <span *ngIf="pair[0]?.teacher">
+    {{ pair[0].teacher }}
+    </span>
+    <span *ngIf="pair[0]?.audience">
+    {{ pair[0].audience }}
+    </span>
+</div>

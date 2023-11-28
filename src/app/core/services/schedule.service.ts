@@ -14,6 +14,6 @@ export class ScheduleService {
   };
   getScheduleById(id: string): Observable<IPlainLesson[]> {
     const url = `${this.baseURL}?group_id=${id}`;
-    return from(this.http.get<IPlainLesson[]>(url));
+    return this.http.get<IPlainLesson[]>(url);
   }
 }

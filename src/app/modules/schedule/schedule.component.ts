@@ -11,8 +11,20 @@ import { IPlainLesson } from '../../core/interfaces/plainLesson';
 import { DayBlockComponent } from './components/day-block/day-block.component';
 import { ActivatedRoute, Route } from '@angular/router';
 import { dayNames } from '../../core/constants/daynames';
-import { IDay } from '../../core/interfaces/day';
-import { from, groupBy, merge, mergeMap, tap, toArray } from 'rxjs';
+import {
+  concatAll,
+  concatMap,
+  flatMap,
+  from,
+  groupBy,
+  map,
+  merge,
+  mergeAll,
+  mergeMap,
+  switchMap,
+  tap,
+  toArray,
+} from 'rxjs';
 
 @Component({
   selector: 'app-schedule',
@@ -29,31 +41,29 @@ export class ScheduleComponent implements OnInit {
     private changeDetector: ChangeDetectorRef
   ) {}
 
-  days: IDay[] = [];
+  days: IPlainLesson[][][]  = [];
   groupName: string = '';
   dayNames = dayNames;
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.scheduleService.getScheduleById(id!).subscribe((res) => {
-      this.groupName = res[0].group_name;
-      from(res) // group plain lessons to days
-        .pipe(
-          groupBy((lesson) => lesson.day_number),
-          mergeMap((group) => group.pipe(toArray()))
-        )
-        .subscribe((dayWithPlainLessons) => {
-          let day: IDay = { schedule: [] };
-          from(dayWithPlainLessons) // group to pairs
-            .pipe(
-              groupBy((lesson) => lesson.lesson_number),
-              mergeMap((group) => group.pipe(toArray()))
-            )
-            .subscribe((pair) => {
-              day.schedule.push(pair);
-            });
-          this.days.push(day);
-        });
-      this.changeDetector.markForCheck();
-    });
+    this.scheduleService
+      .getScheduleById(id!).pipe(
+        concatAll(),
+        groupBy((lesson: IPlainLesson) => lesson.day_number),
+        mergeMap((days) =>
+          days.pipe(
+            groupBy((el: IPlainLesson) => el.lesson_number),
+            mergeMap((group) => group.pipe(toArray())),
+            toArray()
+          )
+        ),
+        toArray()
+      )
+      .subscribe((x) => {
+        this.days = x;
+        console.log(x)
+        this.groupName = x[0][0][0].group_name;
+        this.changeDetector.markForCheck();
+      });
   }
 }
