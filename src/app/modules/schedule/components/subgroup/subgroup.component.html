@@ -1,13 +1,14 @@
-<ng-container *ngIf="subgroup.subject">
-  <div
-  class="group"
+<ng-container >
+  <div 
+    *ngIf="subgroup.subject"
+    class="group"
     [ngClass]="'sub'+subgroup.subgroup_id"
   >
     <div *ngIf="subgroup.subgroup_id">Группа {{ subgroup.subgroup_id }}:</div>
     <span *ngIf="subgroup.subject">
-      <i *ngIf="subgroup.subgroup_id == null">
-        {{ subgroup.lesson_number }}.
-      </i>
+      <!-- <i *ngIf="subgroup.subgroup_id == null"> -->
+        <!-- {{ subgroup.lesson_number }}. -->
+      <!-- </i> -->
       <b>{{ subgroup.subject }}</b>
     </span>
     <span *ngIf="subgroup.teacher">

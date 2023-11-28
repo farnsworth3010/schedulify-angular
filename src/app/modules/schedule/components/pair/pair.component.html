@@ -1,5 +1,5 @@
 <li class="item">
-    <!-- <span>1.</span> -->
-  {{ pair.length > 1 || pair.length == 0 ? i + 1 + "." : "" }}
+  <!-- <span>1.</span> -->
+  <span [class.float-index]="pair[0] && !pair[0].subgroup_id">{{ i + 1 }}.&nbsp;</span>
   <app-subgroup *ngFor="let subgroup of pair" [subgroup]="subgroup" />
 </li>
