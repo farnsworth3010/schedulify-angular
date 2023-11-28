@@ -1,0 +1,37 @@
+// .firstGroup
+//     border-radius: 5px
+//     padding: 5px
+//     margin-top: 5px
+//     color: #000
+//     background: #f4f4f4
+//     color: #79a147
+
+// .secondGroup
+//     border-radius: 5px
+//     padding: 5px
+//     margin-top: 5px
+//     color: #000
+//     background: #f4f4f4
+//     color: #ff6456
+
+span
+    display: block
+
+i
+    font-style: normal
+
+@mixin sub-mixin($color)
+    color: $color
+    background: #f4f4f4
+    padding: 5px
+
+.group
+    border-radius: 5px
+    margin-top: 5px
+    color: #000
+    &.sub1
+        @include sub-mixin(#79a147)
+    &.sub2
+        @include sub-mixin(#ff6456)
+
+                 

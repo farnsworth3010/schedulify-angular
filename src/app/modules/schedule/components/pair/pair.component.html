@@ -1,1 +1,5 @@
-<app-subgroup *ngFor="subgroup of pair"/>
+<li class="item">
+    <!-- <span>1.</span> -->
+  {{ pair.length > 1 || pair.length == 0 ? i + 1 + "." : "" }}
+  <app-subgroup *ngFor="let subgroup of pair" [subgroup]="subgroup" />
+</li>

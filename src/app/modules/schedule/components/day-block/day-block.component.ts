@@ -5,13 +5,13 @@ import {
   OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LessonComponent } from '../lesson/lesson.component';
 import { IPlainLesson } from '../../../../core/interfaces/plainLesson';
+import { PairComponent } from '../pair/pair.component';
 
 @Component({
   selector: 'app-day-block',
   standalone: true,
-  imports: [CommonModule, LessonComponent],
+  imports: [CommonModule, PairComponent],
   templateUrl: './day-block.component.html',
   styleUrl: './day-block.component.sass',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -13,4 +13,5 @@ import { IPlainLesson } from '../../../../core/interfaces/plainLesson';
 })
 export class PairComponent {
   @Input() pair: IPlainLesson[] = []
+  @Input() i: number = 0
 }

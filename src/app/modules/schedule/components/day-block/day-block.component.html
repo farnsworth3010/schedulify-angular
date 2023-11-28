@@ -2,8 +2,7 @@
   <h2 [class.weekend]="isWeekend">{{ dayName }}</h2>
   <ul class="scheduleList">
     <ng-container *ngFor="let pair of extendedDay; index as i">
-      <app-lesson [i]="i" [pair]="pair" />
-      
+      <app-pair [i]="i" [pair]="pair"/>
     </ng-container>
   </ul>
 </div>
